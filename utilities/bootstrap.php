@@ -1,5 +1,5 @@
 <?php
-$controller = "news";
+$controller = "index";
 $action = "index";
 $query = null;
  
