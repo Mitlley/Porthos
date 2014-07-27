@@ -6,6 +6,7 @@ ini_set ('display_errors', 1);
  
 require_once HOME . DS . 'config.php';
 require_once HOME . DS . 'utilities' . DS . 'bootstrap.php';
+require_once 'vendor/autoload.php';
  
 function __autoload($class)
 {

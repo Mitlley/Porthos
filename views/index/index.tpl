@@ -23,5 +23,6 @@
   </head>
   <body fullbleed unresolved  touch-action="auto"> <!-- IMPORTANTISIMO PARA QUE FUNCIONES EN IPAD-->
     <?php include HOME . DS . 'includes' . DS . 'proyectos.inc.php';?>
+    <?php include HOME . DS . 'includes' . DS . 'github_proyectos.inc.php';?>
   </body>
 </html>
