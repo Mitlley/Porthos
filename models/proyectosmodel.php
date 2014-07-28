@@ -22,6 +22,18 @@ class ProyectosModel extends Model
 
 		return $proyectos;
 	}
+
+	public function getProyecto($nombre){
+		$sql = "SELECT * FROM proyectos WHERE nombre = ?";
+		$this->_setSql($sql);
+		$proyecto = $this->getRow(array($nombre));
+
+		if(empty($proyecto)){
+			return FALSE;
+		}
+
+		return $proyecto;
+	}
     
 }
 ?>

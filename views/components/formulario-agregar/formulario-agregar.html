@@ -1,0 +1,85 @@
+<link rel="import" href="../core-scaffold/core-scaffold.html">
+<link rel="import" href="../core-header-panel/core-header-panel.html">
+<link rel="import" href="../core-menu/core-menu.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
+<link rel="import" href="../core-item/core-item.html">
+<link rel="import" href="../core-icon-button/core-icon-button.html">
+<link rel="import" href="../core-toolbar/core-toolbar.html">
+<link rel="import" href="../core-menu/core-submenu.html">
+<link rel="import" href="../core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../core-animated-pages/transitions/hero-transition.html">
+<link rel="import" href="../core-animated-pages/transitions/cross-fade.html">
+<link rel="import" href="../core-animated-pages/transitions/slide-down.html">
+<link rel="import" href="../core-animated-pages/transitions/slide-up.html">
+<link rel="import" href="../core-animated-pages/transitions/tile-cascade.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../core-icons/core-icons.html">
+<link rel="import" href="../core-icons/iconsets/av-icons.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+
+<polymer-element name="formulario-agregar">
+
+<template>
+  <style>    
+  :host {
+    
+  }
+  #core_card {
+    width: 300px;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+    padding: 20px;
+    min-height: 200px;
+  }
+  #paper_input {
+    width: auto;
+    margin: 20px 5px 5px;
+  }
+  #paper_input1 {
+    margin: 5px;
+    width: auto;
+  }
+  #div1 {
+    margin: 5px;
+    margin-top: 30px;
+  }
+  #paper_fab {
+    background-color: rgb(29, 75, 42);
+  }
+  #div2 {
+    font-size: 18px;
+    color: rgb(73, 86, 76);
+  }
+  </style>
+    <core-card id="core_card" layout vertical>
+      <div id="div2">Agregue un Reporte<span id="stat"></span></div>
+      <paper-input label="Titulo del reporte..." id="paper_input" value="{{titulo}}"></paper-input>
+      <paper-input label="Comentario..." required id="paper_input1" value="{{comentario}}"></paper-input>
+      <div id="div1" layout horizontal end-justified>
+        <paper-fab icon="check" on-tap="{{submitForm}}" id="paper_fab"></paper-fab>
+      </div>
+    </core-card>
+
+</template>
+
+<script>
+
+Polymer('formulario-agregar', {
+  submitForm: function(){
+    //this.$.ajax.go();
+    $.post( "/reportes/guardar", { titulo: this.titulo, comentario: this.comentario })
+      .done(function(data) {
+        this.response =  JSON.parse(data);
+        alert(this.response.mensaje);
+      });
+    }
+});
+
+</script>
+
+</polymer-element>

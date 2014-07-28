@@ -1,0 +1,75 @@
+<link rel="import" href="../core-icon-button/core-icon-button.html">
+<link rel="import" href="../core-toolbar/core-toolbar.html">
+<link rel="import" href="../core-header-panel/core-header-panel.html">
+
+<polymer-element name="ventana-reportes">
+
+  <template>
+    <style>    
+      :host {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        background-color: #fff;
+      }
+      #core_header_panel {
+        width: 100%;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        background-color: #fff;
+      }
+      #section {
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+      }
+      .core_card {
+        width: 300px;
+        height: auto;
+        margin: 5px;
+        min-height: 50px;
+        background-color: rgb(255, 255, 255);
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+        padding: 10px;
+      }
+      #div1 {
+        margin: 10px;
+        font-size: 18px;
+      }
+    </style>
+    <core-header-panel mode="scroll" id="core_header_panel">
+      <section id="section" center active vertical layout>
+        <core-ajax id="ajax" auto url="/reportes/todos" handleAs="json" response="{{response}}"></core-ajax>
+        <core-card class="core_card" layout vertical>
+          <div id="div1">Reporte</div>
+        </core-card>
+        <template repeat="{{reporte in  response.reportes}}">
+          <core-card class="core_card">
+            {{reporte.titulo}}
+          </core-card>
+        </template>
+      </section>
+    </core-header-panel>
+  </template>
+
+  <script>
+
+    Polymer('ventana-reportes', {
+      load: function(){
+        this.$.ajax.go();
+      }
+    });
+
+  </script>
+
+</polymer-element>
